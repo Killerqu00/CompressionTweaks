@@ -14,8 +14,11 @@ public class BiomeRegistry {
     public static DeferredRegister<Biome> BIOME_REGISTER = DeferredRegister.create(Registry.BIOME_REGISTRY, CompressionTweaks.MODID);
 
     public static void registerBiomes() {
-        register(Biomes.NETHER_BIOME, OverworldBiomes::netherBiome);
         register(Biomes.END_BIOME, OverworldBiomes::endBiome);
+        register(Biomes.VALLEY_BIOME, OverworldBiomes::valleyBiome);
+        register(Biomes.DELTAS_BIOME, OverworldBiomes::deltasBiome);
+        register(Biomes.CRIMSON_BIOME, OverworldBiomes::crimsonBiome);
+        register(Biomes.WARPED_BIOME, OverworldBiomes::warpedBiome);
     }
 
     public static void register(ResourceKey<Biome> key, Supplier<Biome> biomeSupplier) {
