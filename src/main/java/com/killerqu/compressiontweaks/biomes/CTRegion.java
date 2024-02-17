@@ -30,6 +30,7 @@ public class CTRegion extends Region {
             builder.replaceBiome(Biomes.FOREST, com.killerqu.compressiontweaks.biomes.Biomes.DELTAS_BIOME);
             builder.replaceBiome(Biomes.TAIGA, com.killerqu.compressiontweaks.biomes.Biomes.CRIMSON_BIOME);
             builder.replaceBiome(Biomes.JUNGLE, com.killerqu.compressiontweaks.biomes.Biomes.WARPED_BIOME);
+            builder.replaceBiome(Biomes.BEACH, com.killerqu.compressiontweaks.biomes.Biomes.VOID_BIOME);
         });
     }
 }

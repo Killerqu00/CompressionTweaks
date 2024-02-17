@@ -11,9 +11,11 @@ public class SurfaceRuleData {
     private static final SurfaceRules.RuleSource SOULSOIL = makeStateRule(Blocks.SOUL_SOIL);
     private static final SurfaceRules.RuleSource BASALT = makeStateRule(Blocks.BASALT);
     private static final SurfaceRules.RuleSource BEDROCK = makeStateRule(Blocks.BEDROCK);
+    private static final SurfaceRules.RuleSource AIR = makeStateRule(Blocks.AIR);
 
     public static SurfaceRules.RuleSource makeRules() {
         return SurfaceRules.sequence(
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(Biomes.VOID_BIOME), AIR),
                 SurfaceRules.ifTrue(SurfaceRules.verticalGradient("compressiontweaks:bedrock_floor", new VerticalAnchor.AboveBottom(0), new VerticalAnchor.AboveBottom(5)), BEDROCK),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(Biomes.VALLEY_BIOME), SOULSOIL),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(Biomes.CRIMSON_BIOME), NETHERRACK),

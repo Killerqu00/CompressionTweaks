@@ -19,6 +19,7 @@ public class BiomeRegistry {
         register(Biomes.DELTAS_BIOME, OverworldBiomes::deltasBiome);
         register(Biomes.CRIMSON_BIOME, OverworldBiomes::crimsonBiome);
         register(Biomes.WARPED_BIOME, OverworldBiomes::warpedBiome);
+        register(Biomes.VOID_BIOME, OverworldBiomes::voidBiome);
     }
 
     public static void register(ResourceKey<Biome> key, Supplier<Biome> biomeSupplier) {
