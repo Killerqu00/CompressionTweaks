@@ -6,6 +6,9 @@ import com.killerqu.compressiontweaks.biomes.CTRegion;
 import com.killerqu.compressiontweaks.biomes.SurfaceRuleData;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -37,11 +40,16 @@ import terrablender.api.SurfaceRuleManager;
 public class CompressionTweaks {
     public static final String MODID = "compressiontweaks";
     private static final Logger LOGGER = LogUtils.getLogger();
+
+    //NOTE: This tag does not need to contain the AE2 Mysterious cube, that is still tracked.
+    public final static TagKey<Block> ATTRACTS_COMPASS = BlockTags.create(new ResourceLocation(CompressionTweaks.MODID, "attracts_meteorite_compass"));
+
     public CompressionTweaks() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::commonSetup);
         BiomeRegistry.BIOME_REGISTER.register(modEventBus);
         BiomeRegistry.registerBiomes();
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
