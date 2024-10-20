@@ -1,8 +1,6 @@
 package com.killerqu.compressiontweaks.event;
 
-import appeng.block.misc.MysteriousCubeBlock;
 import appeng.server.services.compass.CompassService;
-import appeng.worldgen.meteorite.MeteoriteStructurePiece;
 import com.killerqu.compressiontweaks.CompressionTweaks;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.level.BlockEvent;
@@ -14,7 +12,6 @@ import net.minecraftforge.fml.common.Mod;
 public class BlockEventsListener {
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent e){
-        System.out.println(e.getState().toString());
         if(e.getState().is(CompressionTweaks.ATTRACTS_COMPASS) && e.getLevel() instanceof ServerLevel level){
             //NOTE: This is because when the event is fired, the block is actually still there and gets caught in the scan.
             //This would result breaking conglomerate ores never clearing the chunk's flag and always be marked for the compass.
