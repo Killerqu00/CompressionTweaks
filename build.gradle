@@ -139,6 +139,9 @@ repositories {
     maven { url = 'https://maven.minecraftforge.net/' }
     maven { url = 'https://maven.tterrag.com/' }
     maven {
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
         name "Modmaven"
         url "https://modmaven.dev/"
         // For Gradle 5.1 and above, limit it to just AE2
@@ -177,6 +180,7 @@ dependencies {
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
     implementation fg.deobf("appeng:appliedenergistics2-forge:12.9.5")
+    implementation fg.deobf("vazkii.quark:Quark:3.4-408.3077")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
