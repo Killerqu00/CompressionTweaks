@@ -6,6 +6,7 @@
   "refmap": "compressiontweaks.refmap.json",
   "mixins": [
     "CompassServiceMixin",
+    "RemainingItemMixin",
     "StructureMixin"
   ],
   "client": [
