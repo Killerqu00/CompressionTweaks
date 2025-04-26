@@ -1,4 +1,4 @@
-package com.killerqu.compressiontweaks.mixin;
+package com.killerqu.compressiontweaks.mixin.bottled_cloud;
 
 import com.killerqu.compressiontweaks.config.CTCommonConfig;
 import net.minecraft.world.InteractionHand;
