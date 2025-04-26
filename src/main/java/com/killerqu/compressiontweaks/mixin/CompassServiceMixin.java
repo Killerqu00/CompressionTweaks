@@ -2,6 +2,7 @@ package com.killerqu.compressiontweaks.mixin;
 
 import appeng.server.services.compass.CompassService;
 import com.killerqu.compressiontweaks.CompressionTweaks;
+import com.killerqu.compressiontweaks.config.CTCommonConfig;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,7 +21,8 @@ public class CompassServiceMixin {
             at = @At("HEAD"), remap = false //Damn you, CompassRegion. Private and all that, can't even use ATs on it.
     )
     private static void lambda(BlockState desiredState, AtomicInteger blockCount, BlockState state, int count, CallbackInfo ci){
-        if(state.is(CompressionTweaks.ATTRACTS_COMPASS)) {
+        //The config flag here should dictate whether tagged blocks get marked by the compass.
+        if(CTCommonConfig.BOULDER_COMPASS.get() && state.is(CompressionTweaks.ATTRACTS_COMPASS)) {
             blockCount.getAndIncrement(); //For some reason, it won't go past one...but it doesn't matter, as long as the chunk is marked correctly.
             }
         //We aren't cancelling here, so the rest of the lambda, which checks for the cube still runs.

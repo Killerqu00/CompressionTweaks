@@ -1,0 +1,15 @@
+{
+    "type": "compressiontweaks:crafting_shapeless_tool",
+    "ingredients": [
+      {
+        "tag": "ae2:metal_ingots"
+      },
+      {
+        "tag": "ae2:knife"
+      }
+    ],
+    "result": {
+      "count": 4,
+      "item": "ae2:cable_anchor"
+    }
+  }

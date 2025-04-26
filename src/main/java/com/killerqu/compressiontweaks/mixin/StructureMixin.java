@@ -1,6 +1,7 @@
 package com.killerqu.compressiontweaks.mixin;
 
 import appeng.server.services.compass.CompassService;
+import com.killerqu.compressiontweaks.config.CTCommonConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.StructureManager;
@@ -22,6 +23,7 @@ public class StructureMixin {
     private void onPlaced(WorldGenLevel p_226560_, StructureManager p_226561_, ChunkGenerator p_226562_, RandomSource p_226563_, BoundingBox p_226564_, ChunkPos p_226565_, PiecesContainer p_226566_, CallbackInfo ci){
         Structure struct = (Structure) (Object) this;
         //Explicitly checking for jigsaws should trim down the amount of scanned chunks. All boulders are jigsaws.
-        if(struct.type() == StructureType.JIGSAW) CompassService.updateArea(p_226560_.getLevel(), p_226560_.getChunk(p_226565_.x,p_226565_.z));
+        //We also check for the flag in config to cut down on unnecessary scanning.
+        if(CTCommonConfig.BOULDER_COMPASS.get() && struct.type() == StructureType.JIGSAW) CompassService.updateArea(p_226560_.getLevel(), p_226560_.getChunk(p_226565_.x,p_226565_.z));
     }
 }
