@@ -5,12 +5,13 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "compressiontweaks.refmap.json",
   "mixins": [
-    "CloudBottlingMixin",
-    "CompassServiceMixin",
     "RemainingItemMixin",
-    "StructureMixin"
+    "bottled_cloud.CloudBottlingMixin",
+    "compass.CompassServiceMixin",
+    "compass.StructureMixin"
   ],
   "client": [
+    "bottled_cloud.JEIConversionCategoryMixin"
   ],
   "injectors": {
     "defaultRequire": 1

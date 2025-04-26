@@ -1,4 +1,4 @@
-package com.killerqu.compressiontweaks.mixin;
+package com.killerqu.compressiontweaks.mixin.compass;
 
 import appeng.server.services.compass.CompassService;
 import com.killerqu.compressiontweaks.config.CTCommonConfig;
