@@ -32,7 +32,7 @@ public class CompressionTweaks {
     //NOTE: This tag does not need to contain the AE2 Mysterious cube, that is still tracked.
     public final static TagKey<Block> ATTRACTS_COMPASS = BlockTags.create(new ResourceLocation(CompressionTweaks.MODID, "attracts_meteorite_compass"));
     //For our purposes so far, this should have the engineer's hammer and quartz knives.
-    public final static TagKey<Item> DAMAGEABLE_TOOLS = ItemTags.create(new ResourceLocation(CompressionTweaks.MODID, "crafting_damageable_tools"));
+    public final static TagKey<Item> DAMAGEABLE_TOOLS = ItemTags.create(new ResourceLocation(CompressionTweaks.MODID, "consumable_tools"));
 
     public CompressionTweaks() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();

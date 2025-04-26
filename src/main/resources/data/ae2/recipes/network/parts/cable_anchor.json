@@ -1,5 +1,5 @@
 {
-    "type": "compressiontweaks:crafting_shapeless_tool",
+    "type": "compressiontweaks:shapeless_crafting_tool",
     "ingredients": [
       {
         "tag": "ae2:metal_ingots"
