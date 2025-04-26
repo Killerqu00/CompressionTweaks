@@ -138,6 +138,23 @@ repositories {
     maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
     maven { url = 'https://maven.minecraftforge.net/' }
     maven { url = 'https://maven.tterrag.com/' }
+    maven {
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
+        name "Modmaven"
+        url "https://modmaven.dev/"
+        // For Gradle 5.1 and above, limit it to just AE2
+        content {
+            includeGroup 'appeng'
+        }
+    }
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 dependencies {
@@ -164,10 +181,14 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    implementation fg.deobf('com.github.glitchfiend:TerraBlender-forge:1.19.2-2.0.1.166')
+    //No clue why, the previous one just...would not function.
+    implementation fg.deobf("curse.maven:terrablender-563928:4618490")
     implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim") { transitive = false }
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+    implementation fg.deobf("appeng:appliedenergistics2-forge:12.9.5")
+    //This is...not required for now. I'll figure out something for that damn cloud in a bottle eventually.
+    implementation fg.deobf("vazkii.quark:Quark:3.4-408.3077")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
