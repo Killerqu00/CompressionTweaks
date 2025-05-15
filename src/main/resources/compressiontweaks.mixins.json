@@ -11,7 +11,8 @@
     "compass.StructureMixin"
   ],
   "client": [
-    "bottled_cloud.JEIConversionCategoryMixin"
+    "bottled_cloud.JEIConversionCategoryMixin",
+    "EMIVanillaMixin"
   ],
   "injectors": {
     "defaultRequire": 1
