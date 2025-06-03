@@ -195,6 +195,9 @@ dependencies {
     implementation fg.deobf("vazkii.quark:Quark:3.4-408.3077")
     compileOnly fg.deobf("dev.emi:emi-forge:${emi_version}")
     runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}")
+    //This is because i do not know how to make emi-specific plugins.
+    implementation fg.deobf("mezz.jei:jei-1.19.2-forge-api:${version_jei}")
+    implementation fg.deobf("mezz.jei:jei-1.19.2-common-api:${version_jei}")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
