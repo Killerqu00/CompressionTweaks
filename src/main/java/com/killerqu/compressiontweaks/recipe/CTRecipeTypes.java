@@ -33,5 +33,13 @@ public class CTRecipeTypes {
             });
     public static final RegistryObject<RecipeSerializer<ShapelessToolRecipe>> SHAPELESS_TOOL_SERIALIZER = RECIPE_SERIALIZERS.register("shapeless_crafting_tool", ShapelessToolRecipe.Serializer::new);
 
+    public static final RegistryObject<RecipeType<BoulderInfoRecipe>> BOULDER_INFO = RECIPE_TYPES.register("boulder_info",
+            () -> new RecipeType<BoulderInfoRecipe>() {
+                @Override
+                public String toString() {
+                    return new ResourceLocation(CompressionTweaks.MODID, "boulder_info").toString();
+                }
+            });
+    public static final RegistryObject<RecipeSerializer<BoulderInfoRecipe>> BOULDER_SERIALIZER = RECIPE_SERIALIZERS.register("boulder_info", BoulderInfoRecipe.Serializer::new);
 
 }
