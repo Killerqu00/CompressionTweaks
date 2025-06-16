@@ -80,22 +80,30 @@ public class BoulderInfoRecipe implements Recipe<Container> {
             int oresLength = buf.readInt();
             List<ItemStack> ores = new ArrayList<>();
             for(int i = 0; i<oresLength;i++){
-                ores.add(buf.readItem());
+                ItemStack item = buf.readItem();
+                item.setCount(buf.readInt());
+                ores.add(item);
             }
             int blocksLength = buf.readInt();
             List<ItemStack> blocks = new ArrayList<>();
             for(int i = 0; i<blocksLength;i++){
-                blocks.add(buf.readItem());
+                ItemStack item = buf.readItem();
+                item.setCount(buf.readInt());
+                blocks.add(item);
             }
             int primariesLength = buf.readInt();
             List<ItemStack> primaries = new ArrayList<>();
             for(int i = 0; i<primariesLength;i++){
-                primaries.add(buf.readItem());
+                ItemStack item = buf.readItem();
+                item.setCount(buf.readInt());
+                primaries.add(item);
             }
             int secondariesLength = buf.readInt();
             List<ItemStack> secondaries = new ArrayList<>();
             for(int i = 0; i<secondariesLength;i++){
-                secondaries.add(buf.readItem());
+                ItemStack item = buf.readItem();
+                item.setCount(buf.readInt());
+                secondaries.add(item);
             }
             int fluidsLength = buf.readInt();
             List<FluidStack> fluids = new ArrayList<>();
@@ -115,18 +123,22 @@ public class BoulderInfoRecipe implements Recipe<Container> {
             buf.writeInt(ores.size());
             for(int i = 0; i<ores.size();i++){
                 buf.writeItem(ores.get(i));
+                buf.writeInt(ores.get(i).getCount());
             }
             buf.writeInt(blocks.size());
             for(int i = 0; i<blocks.size();i++){
                 buf.writeItem(blocks.get(i));
+                buf.writeInt(blocks.get(i).getCount());
             }
             buf.writeInt(primaries.size());
             for(int i = 0; i<primaries.size();i++){
                 buf.writeItem(primaries.get(i));
+                buf.writeInt(primaries.get(i).getCount());
             }
             buf.writeInt(secondaries.size());
             for(int i = 0; i<secondaries.size();i++){
                 buf.writeItem(secondaries.get(i));
+                buf.writeInt(secondaries.get(i).getCount());
             }
             buf.writeInt(fluids.size());
             for(int i = 0; i<fluids.size();i++){
