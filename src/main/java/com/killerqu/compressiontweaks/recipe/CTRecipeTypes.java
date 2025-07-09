@@ -42,4 +42,13 @@ public class CTRecipeTypes {
             });
     public static final RegistryObject<RecipeSerializer<BoulderInfoRecipe>> BOULDER_SERIALIZER = RECIPE_SERIALIZERS.register("boulder_info", BoulderInfoRecipe.Serializer::new);
 
+    public static final RegistryObject<RecipeType<LeftoversOverrideRecipe>> LEFTOVERS_OVERRIDE = RECIPE_TYPES.register("leftovers_override",
+            () -> new RecipeType<LeftoversOverrideRecipe>() {
+                @Override
+                public String toString() {
+                    return new ResourceLocation(CompressionTweaks.MODID, "leftovers_override").toString();
+                }
+            });
+    public static final RegistryObject<RecipeSerializer<LeftoversOverrideRecipe>> LEFTOVERS_SERIALIZER = RECIPE_SERIALIZERS.register("leftovers_override", LeftoversOverrideRecipe.Serializer::new);
+
 }

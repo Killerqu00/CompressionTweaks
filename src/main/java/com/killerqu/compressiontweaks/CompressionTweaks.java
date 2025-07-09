@@ -12,8 +12,12 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.client.event.RecipesUpdatedEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.AddReloadListenerEvent;
+import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -23,11 +27,13 @@ import org.slf4j.Logger;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 
+import static com.killerqu.compressiontweaks.recipe.LeftoversOverrideRecipe.LEFTOVERS_CACHE;
+
 
 @Mod(CompressionTweaks.MODID)
 public class CompressionTweaks {
     public static final String MODID = "compressiontweaks";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     //NOTE: This tag does not need to contain the AE2 Mysterious cube, that is still tracked.
     public final static TagKey<Block> ATTRACTS_COMPASS = BlockTags.create(new ResourceLocation(CompressionTweaks.MODID, "attracts_meteorite_compass"));
@@ -42,6 +48,7 @@ public class CompressionTweaks {
         CTRecipeTypes.RECIPE_TYPES.register(modEventBus);
         CTRecipeTypes.RECIPE_SERIALIZERS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(EventHandler.class);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CTCommonConfig.SPEC);
     }
 
@@ -53,4 +60,10 @@ public class CompressionTweaks {
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MODID, SurfaceRuleData.makeRules());
         });
     }
+
+
+    public static class EventHandler {
+        @SubscribeEvent public static void onReloadServerResources(AddReloadListenerEvent e){ LEFTOVERS_CACHE.clear(); }
+    }
+
 }
