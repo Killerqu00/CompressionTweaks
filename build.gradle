@@ -137,17 +137,12 @@ repositories {
     // }
     maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
     maven { url = 'https://maven.minecraftforge.net/' }
-    maven { url = 'https://maven.tterrag.com/' }
     maven {
         url = "https://maven.blamejared.com/"
     }
     maven {
         name "Modmaven"
         url "https://modmaven.dev/"
-        // For Gradle 5.1 and above, limit it to just AE2
-        content {
-            includeGroup 'appeng'
-        }
     }
     maven {
         url "https://cursemaven.com"
