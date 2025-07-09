@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
+import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -28,6 +29,7 @@ import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 
 import static com.killerqu.compressiontweaks.recipe.LeftoversOverrideRecipe.LEFTOVERS_CACHE;
+import static com.killerqu.compressiontweaks.recipe.LeftoversOverrideRecipe.LEFTOVERS_TEMP_CACHE;
 
 
 @Mod(CompressionTweaks.MODID)
@@ -63,7 +65,15 @@ public class CompressionTweaks {
 
 
     public static class EventHandler {
-        @SubscribeEvent public static void onReloadServerResources(AddReloadListenerEvent e){ LEFTOVERS_CACHE.clear(); }
+        @SubscribeEvent
+        public static void onReloadServerResources(OnDatapackSyncEvent e){
+            //We don't have a clean way to wipe the cache before resources start reloading.
+            //So the recipes are dumped to a temporary cache and when that's done, we wipe the main cache and move in the contents of the temp cache.
+            //Then wipe the temp cache, of course.
+            LEFTOVERS_CACHE.clear();
+            LEFTOVERS_CACHE.putAll(LEFTOVERS_TEMP_CACHE);
+            LEFTOVERS_TEMP_CACHE.clear();
+        }
     }
 
 }

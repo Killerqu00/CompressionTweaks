@@ -2,8 +2,10 @@ package com.killerqu.compressiontweaks.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.killerqu.compressiontweaks.CompressionTweaks;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -20,6 +22,7 @@ import java.util.Map;
 public class LeftoversOverrideRecipe implements Recipe<Inventory> {
 
     public static Map<ResourceLocation, List<ItemStack>> LEFTOVERS_CACHE = new HashMap<>();
+    public static Map<ResourceLocation, List<ItemStack>> LEFTOVERS_TEMP_CACHE = new HashMap<>();
 
     private final ResourceLocation id;
     private final ResourceLocation target;
@@ -29,7 +32,7 @@ public class LeftoversOverrideRecipe implements Recipe<Inventory> {
         this.id = id;
         this.target = target;
         this.items = items;
-        LEFTOVERS_CACHE.put(target, items);
+        LEFTOVERS_TEMP_CACHE.put(target, items);
     }
 
     public ResourceLocation getTarget(){ return target; }
@@ -43,18 +46,23 @@ public class LeftoversOverrideRecipe implements Recipe<Inventory> {
     @Override public boolean matches(Inventory p_44002_, Level p_44003_) { return false; }
     @Override public ItemStack assemble(Inventory p_44001_) { return null; }
     @Override public boolean canCraftInDimensions(int p_43999_, int p_44000_) { return false; }
-    @Override public ItemStack getResultItem() { return null; }
+    @Override public ItemStack getResultItem() { return ItemStack.EMPTY; }
 
     public static class Serializer implements RecipeSerializer<LeftoversOverrideRecipe> {
         public @NotNull LeftoversOverrideRecipe fromJson(ResourceLocation id, JsonObject json){
-            ResourceLocation target = new ResourceLocation(json.getAsJsonObject("target").getAsString());
-            List<ItemStack> items = new ArrayList<>();
-            JsonArray list = json.getAsJsonArray("items");
-            list.forEach(jsonElement -> {
-                ItemStack item = ShapedRecipe.itemStackFromJson(jsonElement.getAsJsonObject());
-                items.add(item.getItem().equals(Items.AIR) ? ItemStack.EMPTY: item);
-            });
-            return new LeftoversOverrideRecipe(id, target, items);
+            try {
+                ResourceLocation target = new ResourceLocation(GsonHelper.getAsString(json, "target"));
+                List<ItemStack> items = new ArrayList<>();
+                JsonArray list = GsonHelper.getAsJsonArray(json, "items");
+                list.forEach(jsonElement -> {
+                    if(jsonElement.isJsonNull()) items.add(ItemStack.EMPTY);
+                    else items.add(ShapedRecipe.itemStackFromJson(jsonElement.getAsJsonObject()));
+                });
+                return new LeftoversOverrideRecipe(id, target, items);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new LeftoversOverrideRecipe(id, new ResourceLocation("dummy"), new ArrayList<>());
+            }
         }
         public @Nullable LeftoversOverrideRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf){
             ResourceLocation target = new ResourceLocation(buf.readUtf());
