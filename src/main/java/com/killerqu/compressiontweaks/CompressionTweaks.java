@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;
@@ -36,7 +37,7 @@ import static com.killerqu.compressiontweaks.recipe.LeftoversOverrideRecipe.LEFT
 public class CompressionTweaks {
     public static final String MODID = "compressiontweaks";
     public static final Logger LOGGER = LogUtils.getLogger();
-
+    public static final RandomSource RANDOM = RandomSource.create();
     //NOTE: This tag does not need to contain the AE2 Mysterious cube, that is still tracked.
     public final static TagKey<Block> ATTRACTS_COMPASS = BlockTags.create(new ResourceLocation(CompressionTweaks.MODID, "attracts_meteorite_compass"));
     //For our purposes so far, this should have the engineer's hammer and quartz knives.

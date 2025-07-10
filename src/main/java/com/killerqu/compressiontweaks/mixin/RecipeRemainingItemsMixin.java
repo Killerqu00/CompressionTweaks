@@ -1,8 +1,11 @@
 package com.killerqu.compressiontweaks.mixin;
 
 import com.killerqu.compressiontweaks.CompressionTweaks;
+import com.simibubi.create.content.kinetics.crafter.MechanicalCrafterBlock;
+import com.simibubi.create.foundation.data.recipe.MechanicalCraftingRecipeBuilder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
@@ -43,8 +46,10 @@ public interface RecipeRemainingItemsMixin<C extends Container> {
                 if(item.isEmpty())  continue;
                 boolean found = false;
                 for(int j = 0; j<container.getContainerSize(); j++){
-                    if(container.getItem(j).is(item.getItem()) && container.getItem(j).hasCraftingRemainingItem()){
-                        output.set(i, container.getItem(j).getCraftingRemainingItem());
+                    if(container.getItem(j).is(item.getItem()) && container.getItem(j).isDamageableItem()){
+                        if(!item.hurt(1, CompressionTweaks.RANDOM, null)) {
+                            output.set(i, container.getItem(j).getCraftingRemainingItem());
+                        }
                         found = true;
                         break;
                     }

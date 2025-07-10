@@ -17,7 +17,6 @@ import javax.annotation.Nullable;
 //compressiontweaks:shapeless_crafting_tool
 //This is a clone of shapeless crafting which does deduct durability from tools which had that function removed.
 public class ShapelessToolRecipe extends ShapelessRecipe {
-    private final RandomSource random = RandomSource.create();
 
     public ShapelessToolRecipe(ResourceLocation p_44246_, String p_44247_, ItemStack p_44248_, NonNullList<Ingredient> p_44249_) {
         super(p_44246_, p_44247_, p_44248_, p_44249_);
@@ -33,7 +32,7 @@ public class ShapelessToolRecipe extends ShapelessRecipe {
         for(int i = 0; i<remainingItems.size(); i++){
             ItemStack item = input.getItem(i).copy();
             if(item.is(CompressionTweaks.DAMAGEABLE_TOOLS)){
-                if(item.hurt(1, random, null)) item = ItemStack.EMPTY;
+                if(item.hurt(1, CompressionTweaks.RANDOM, null)) item = ItemStack.EMPTY;
                 remainingItems.set(i, item);
             } else if (item.hasCraftingRemainingItem()) {
                 remainingItems.set(i, item.getCraftingRemainingItem());

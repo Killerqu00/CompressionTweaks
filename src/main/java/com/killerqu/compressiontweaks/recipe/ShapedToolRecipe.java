@@ -17,7 +17,6 @@ import javax.annotation.Nullable;
 //compressiontweaks:shaped_crafting_tool
 //This is a clone of shaped crafting which does deduct durability from tools which had that function removed.
 public class ShapedToolRecipe extends ShapedRecipe {
-    private final RandomSource random = RandomSource.create();
 
     public ShapedToolRecipe(ResourceLocation p_44153_, String p_44154_, int p_44155_, int p_44156_, NonNullList<Ingredient> p_44157_, ItemStack p_44158_) {
         super(p_44153_, p_44154_, p_44155_, p_44156_, p_44157_, p_44158_);
@@ -33,7 +32,7 @@ public class ShapedToolRecipe extends ShapedRecipe {
         for(int i = 0; i<remainingItems.size(); i++){
             ItemStack item = input.getItem(i).copy();
             if(item.is(CompressionTweaks.DAMAGEABLE_TOOLS)){
-                if(item.hurt(1, random, null)) item = ItemStack.EMPTY;
+                if(item.hurt(1, CompressionTweaks.RANDOM, null)) item = ItemStack.EMPTY;
                 remainingItems.set(i, item);
             } else if (item.hasCraftingRemainingItem()) {
                 remainingItems.set(i, item.getCraftingRemainingItem());
