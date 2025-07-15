@@ -5,7 +5,6 @@ import com.llamalad7.mixinextras.sugar.Local;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.kinetics.crafter.MechanicalCrafterBlockEntity;
 import com.simibubi.create.content.kinetics.crafter.MechanicalCraftingInventory;
-import com.simibubi.create.content.kinetics.crafter.MechanicalCraftingRecipe;
 import com.simibubi.create.content.kinetics.crafter.RecipeGridHandler;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
@@ -25,8 +24,6 @@ import static com.killerqu.compressiontweaks.recipe.LeftoversOverrideRecipe.LEFT
 @Mixin(MechanicalCrafterBlockEntity.class)
 public class MechCrafterMixin {
     @Shadow(remap = false) protected RecipeGridHandler.GroupedItems groupedItems;
-
-    @Shadow protected MechanicalCrafterBlockEntity.Inventory inventory;
 
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Ljava/util/Map;values()Ljava/util/Collection;"), remap = false)
     private Collection<ItemStack> cancelLeftovers(Map<Pair<Integer, Integer>, ItemStack> grid, @Local(index = 4) List<ItemStack> containers){
