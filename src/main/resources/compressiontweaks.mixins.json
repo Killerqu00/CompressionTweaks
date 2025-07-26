@@ -9,7 +9,10 @@
     "RecipeRemainingItemsMixin",
     "bottled_cloud.CloudBottlingMixin",
     "compass.CompassServiceMixin",
-    "compass.StructureMixin"
+    "compass.StructureMixin",
+    "vintageimprovements.CompressorCapacityMixin",
+    "vintageimprovements.PressurizingCategoryMixin",
+    "vintageimprovements.VacuumizingCategoryMixin"
   ],
   "client": [
     "EMIVanillaMixin",
